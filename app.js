@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function showUserDetails(id) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, user, error_1;
+        var response, user, userList, userDiv, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -47,7 +47,11 @@ function showUserDetails(id) {
                     return [4 /*yield*/, response.json()];
                 case 2:
                     user = _a.sent();
-                    console.log('User details:', user);
+                    userList = document.getElementById('user-list');
+                    userList.textContent = '';
+                    userDiv = document.createElement('div');
+                    userDiv.innerHTML = "\n                <h2>".concat(user.data.first_name, " ").concat(user.data.last_name, "</h2>\n                <p>Email: ").concat(user.data.email, "</p>\n                <img key=").concat(user.data.avatar, " src=").concat(user.data.avatar, ">\n                <hr />\n            ");
+                    userList.appendChild(userDiv);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();

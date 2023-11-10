@@ -2,7 +2,20 @@ async function showUserDetails(id: number): Promise<void> {
     try {
         const response = await fetch(`https://reqres.in/api/users/${id}`);
         const user = await response.json();
-        console.log('User details:', user);
+
+        const userList: HTMLDivElement = document.getElementById('user-list') as HTMLDivElement;
+        userList.textContent = '';
+        const userDiv: HTMLDivElement = document.createElement('div');
+
+        userDiv.innerHTML = `
+                <h2>${user.data.first_name} ${user.data.last_name}</h2>
+                <p>Email: ${user.data.email}</p>
+                <img key=${user.data.avatar} src=${user.data.avatar}>
+                <hr />
+            `;
+        userList.appendChild(userDiv);
+
+
     } catch (error) {
         console.error('Error fetching user details:', error);
     }
